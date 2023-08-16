@@ -1,0 +1,19 @@
+{% extends 'padre.html' %}
+{% load static %}
+{% block titulo %}
+<h1>Lista de Profesor</h1>
+{% endblock titulo %}
+    {% block contenidoquecambia %}
+    {% for profesor in profesor %}
+        <li class="list-group-item">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="{% url 'pagweb:editar_profesor' profesor.pk %}">Nombre: {{profesor.nombre}} - Apellido: {{profesor.apellido}}</a>
+                <div>
+                    <a href="{% url 'pagweb:eliminar_profesor' profesor.pk %}" class="btn btn-danger btn-sm ml-2">Eliminar</a>
+                </div>
+            </div>
+        </li>
+    {% endfor %}
+    </u1>
+    <a href="{% url 'pagweb:profesor_form' %}" class="btn btn-primary mt-3">Crear nuevo Profesor</a>
+    {% endblock contenidoquecambia %}

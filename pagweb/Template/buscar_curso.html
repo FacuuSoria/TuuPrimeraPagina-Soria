@@ -1,0 +1,45 @@
+{% extends 'padre.html' %}
+{% load static %}
+{% block titulo %}
+<header class="masthead">
+    <div class="container position-relative">
+        <div class="row justify-content-center">
+            <div class="col-xl-6">
+                <div class="text-center text-white">
+                    <!-- Page heading-->
+                    <h1 class="mb-5">BUSQUEDA DE CURSOS</h1>
+                    <!-- Signup form-->
+                    <!-- * * * * * * * * * * * * * * *-->
+                    <!-- * * SB Forms Contact Form * *-->
+                    <!-- * * * * * * * * * * * * * * *-->
+                    <!-- This form is pre-integrated with SB Forms.-->
+                    <!-- To make this form functional, sign up at-->
+                    <!-- https://startbootstrap.com/solution/contact-forms-->
+                    <!-- to get an API token!-->
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{% endblock titulo %}
+    {% block contenidoquecambia %}
+
+        <h1>Buscar Curso por Nombre</h1>
+        <form method="get" action="">
+            {{ form.as_p }}
+            <button type="submit">Buscar</button>
+
+        </form>
+
+        {% if curso %}
+        <h2>Resultados de la búsqueda:</h2>
+        <ul>
+            {% for c in curso %}
+            <li>Nombre: {{ c.nombre }} - Comision: {{ c.comision }}</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <h3>no hay resultados</h3>
+        {% endif %}
+        <a href="http://127.0.0.1:8000/pagweb/curso_form/"><input type="button" value="Crear Curso"></a>
+        {% endblock contenidoquecambia%}

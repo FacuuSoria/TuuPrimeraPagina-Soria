@@ -1,0 +1,13 @@
+{% extends 'padre.html' %}
+{% load static %}
+{% block titulo %}
+<h1>Borrar Profesor</h1>
+{% endblock titulo %}
+    {% block contenidoquecambia %}
+    estas seguro que quieres borrar el profesor: {{profesor.nombre}} - Comision: {{profesor.apellido}} ?
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Eliminar">
+    </form>
+    <a href="http://127.0.0.1:8000/pagweb/lista_profesor"><input type="button" value="No eliminar"></a>
+    {% endblock contenidoquecambia %}

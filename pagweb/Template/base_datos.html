@@ -1,0 +1,30 @@
+{% extends 'padre.html' %}
+{% load static %}
+{% block titulo %}
+<header class="masthead">
+    <div class="container position-relative">
+        <div class="row justify-content-center">
+            <div class="col-xl-6">
+                <div class="text-center text-white">
+                    <!-- Page heading-->
+                    <h1 class="mb-5">BASE DE DATOS</h1>
+                    <!-- Signup form-->
+                    <!-- * * * * * * * * * * * * * * *-->
+                    <!-- * * SB Forms Contact Form * *-->
+                    <!-- * * * * * * * * * * * * * * *-->
+                    <!-- This form is pre-integrated with SB Forms.-->
+                    <!-- To make this form functional, sign up at-->
+                    <!-- https://startbootstrap.com/solution/contact-forms-->
+                    <!-- to get an API token!-->
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{% endblock titulo %}
+{% block contenidoquecambia %}
+<br>
+<a href="http://127.0.0.1:8000/pagweb/lista_curso"><input type="button" value="Todos los Cursos"></a>
+<a href="http://127.0.0.1:8000/pagweb/lista_alumno/"><input type="button" value="Todos los Alumnos"></a>
+<a href="http://127.0.0.1:8000/pagweb/lista_profesor/"><input type="button" value="Todos los Profesores"></a>
+{% endblock contenidoquecambia %}

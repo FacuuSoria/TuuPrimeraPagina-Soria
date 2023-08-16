@@ -1,0 +1,19 @@
+{% extends 'padre.html' %}
+{% load static %}
+{% block titulo %}
+<h1>Lista de articulos universitarios</h1>
+{% endblock titulo %}
+    {% block contenidoquecambia %}
+    {% for post in post %}
+        <li class="list-group-item">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="{% url 'pagweb:editar_post' post.pk %}">{{post.title}}</a>
+                <div>
+                    <a href="{% url 'pagweb:eliminar_post' post.pk %}" class="btn btn-danger btn-sm ml-2">Eliminar</a>
+                </div>
+            </div>
+        </li>
+    {% endfor %}
+    </u1>
+    <a href="{% url 'pagweb:crear_post' %}" class="btn btn-primary mt-3">Crear nuevo Articulo</a>
+    {% endblock contenidoquecambia %}

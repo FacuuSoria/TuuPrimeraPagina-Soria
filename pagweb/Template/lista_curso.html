@@ -1,0 +1,19 @@
+{% extends 'padre.html' %}
+{% load static %}
+{% block titulo %}
+<h1>Lista de Curso</h1>
+{% endblock titulo %}
+    {% block contenidoquecambia %}
+    {% for curso in curso %}
+        <li class="list-group-item">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="{% url 'pagweb:editar_curso' curso.pk %}">Nombre: {{curso.nombre}} - Comision: {{curso.comision}}</a>
+                <div>
+                    <a href="{% url 'pagweb:eliminar_curso' curso.pk %}" class="btn btn-danger btn-sm ml-2">Eliminar</a>
+                </div>
+            </div>
+        </li>
+    {% endfor %}
+    </u1>
+    <a href="{% url 'pagweb:curso_form' %}" class="btn btn-primary mt-3">Crear nuevo Curso</a>
+    {% endblock contenidoquecambia %}
