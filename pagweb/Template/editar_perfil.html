@@ -7,7 +7,7 @@
             <div class="col-xl-6">
                 <div class="text-center text-white">
                     <!-- Page heading-->
-                    <h1 class="mb-5">Generate more leads with a professional landing page!</h1>
+                    <h1 class="mb-5">Editar Perfil</h1>
                     <!-- Signup form-->
                     <!-- * * * * * * * * * * * * * * *-->
                     <!-- * * SB Forms Contact Form * *-->
@@ -23,4 +23,16 @@
 </header>
 {% endblock titulo %}
 {% block contenidoquecambia %}
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table>
+        {{miformulario.as_p}}
+    </table>
+    {% if user.avatar %}
+    <img src="{{ user.avatar.image.url }}" alt="" width="100">
+    {% endif %}
+    <br>
+    <button type="submit">Guardar Cambios</button>
+</form>
+<a href="http://127.0.0.1:8000/pagweb/cambiar_contrasena"><input type="button" value="Cambiar contraseña"></a>
 {% endblock contenidoquecambia %}

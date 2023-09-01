@@ -4,11 +4,10 @@
 <h1>Editar Articulo</h1>
 {% endblock titulo %}
     {% block contenidoquecambia %}
-    <form action="" method="POST">
-        {% csrf_token %}
-        {{form.as_p}}
-        Fecha: {{post.fecha}}
-        <br>
-        <input type="submit" value="Editar">
-    </form>
+    {% for post in post.pk %}
+    Titulo : {{post.titulo}}
+    Subtitulo: {{post.subtitulo}}
+    Cuerpo: {{post.cuerpo}}
+    Imagen: {{post.imagen}}
+    Autor: {{post.autor}}
     {% endblock contenidoquecambia %}

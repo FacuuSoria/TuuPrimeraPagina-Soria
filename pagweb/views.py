@@ -9,7 +9,9 @@ from django.urls import reverse_lazy
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.views import LogoutView
+from django.contrib.auth.views import LogoutView, PasswordChangeView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from ckeditor.fields import RichTextField
 
 @login_required
 def inicio(request):
@@ -21,6 +23,9 @@ def index(request):
 @login_required
 def base_datos(request):
     return render(request, 'base_datos.html')
+
+def aboutme(request):
+    return render(request, 'aboutme.html')
 
 @login_required
 def curso_form(request):
@@ -103,7 +108,7 @@ class AlumnoDeleteView(DeleteView):
     model = Alumno
     template_name = 'eliminar_alumno.html'
     success_url = reverse_lazy('pagweb:lista_alumno')
-  
+
 @login_required  
 def profesor_form(request):
     if request.method == 'POST':
@@ -114,6 +119,10 @@ def profesor_form(request):
     else:
         mi_formulario = ProfesorForm()
         return render(request, 'profesor_form.html', {'mi_formulario': mi_formulario})
+    
+    def form_valid(self,form):
+        form.instance.imagen = self.request.FILES['imagen'].name if 'imagen' in self.request.FILES else None
+        return super().form_valid(form)
 
 @login_required
 def buscar_profesor(request):
@@ -167,6 +176,24 @@ def registro(request):
     else:
         form=UserCreationFormCustom()
     return render(request, 'registro.html', {'form':form})
+
+def editar_perfil(request):
+    user=request.user
+    if request.method == 'POST':
+        miformulario = UserEditForm(request.POST, request.FILES, instance=user)
+        if miformulario.is_valid():
+            miformulario.save()
+            if miformulario.cleaned_data.get('imagen'):
+                user.avatar.imagen = miformulario.cleaned_data.get('imagen')
+                user.avatar.save()
+            return render(request, 'inicio.html')
+    else:
+        miformulario=UserEditForm(initial={'imagen': user.avatar.imagen}, instance=user)
+    return render(request, 'editar_perfil.html', {'miformulario': miformulario, 'usuario': user})
+
+class CambiarContrasena(LoginRequiredMixin, PasswordChangeView):
+    template_name = 'cambiar_contrasena.html'
+    success_url = reverse_lazy('pagweb:editar_perfil')
 
 class CustomLogoutView(LogoutView):
     next_page = 'pagweb:login'

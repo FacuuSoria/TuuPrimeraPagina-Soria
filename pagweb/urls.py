@@ -1,12 +1,15 @@
 from django.urls import path
 from pagweb import views
 from django.contrib.auth.views import LogoutView
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('curso_form/', views.curso_form, name='curso_form'),
     path('alumno_form/', views.alumno_form, name='alumno_form'),
     path('profesor_form/', views.profesor_form, name='profesor_form'),
-    path('', views.inicio,),
+    path('', views.inicio, name='inicio'),
+    path('aboutme/', views.aboutme, name='aboutme'),
     path('index/', views.index, name='index'),
     path('buscar_curso/', views.buscar_curso, name='buscar_curso'),
     path('buscar_alumno/', views.buscar_alumno, name='buscar_alumno'),
@@ -29,4 +32,7 @@ urlpatterns = [
     path('registro/', views.registro, name="registro"),
     path('registrocompletado/', views.registro, name="registrocompletado"),
     path('logout/', views.CustomLogoutView.as_view(), name='logout'),
+    path('editar_perfil/', views.editar_perfil, name='editar_perfil'),
+    path('cambiar_contrasena/', views.CambiarContrasena.as_view(), name='cambiar_contrasena'),
 ]
+urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

@@ -6,7 +6,8 @@
     {% block contenidoquecambia %}
     <form method="POST">
         {% csrf_token %}
-        {{form.as_p}}
+        {{ form.as_p }}
+        {{ form.media }}
         <input type="submit" value="Crear">
     </form>
     {% endblock contenidoquecambia %}

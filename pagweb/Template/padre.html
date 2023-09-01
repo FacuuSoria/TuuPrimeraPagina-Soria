@@ -20,15 +20,28 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
+                {% if user.is_authenticated %}
                 <a class="navbar-brand" href="http://127.0.0.1:8000/pagweb/">Inicio</a>
                 <a class="navbar-brand" href="http://127.0.0.1:8000/pagweb/curso_form/">Cursos</a>
                 <a class="navbar-brand" href="http://127.0.0.1:8000/pagweb/alumno_form/">Alumnos</a>
                 <a class="navbar-brand" href="http://127.0.0.1:8000/pagweb/profesor_form/">Profesor</a>
-                <a class="navbar-brand" href="http://127.0.0.1:8000/pagweb/base_datos/">BASE DE DATOS</a>
                 <a class="navbar-brand" href="http://127.0.0.1:8000/pagweb/lista_post/">Articulos Universitarios</a>
+                <a class="navbar-brand" href="http://127.0.0.1:8000/pagweb/base_datos/">BASE DE DATOS</a>
+                <div class="navbar-brand">
+                    <a href="http://127.0.0.1:8000/pagweb/editar_perfil/">
+                        {% if request.user.avatar %}
+                        <img src="{{ user.avatar.image.url }}" alt="{{request.user.username}}" height="48px">
+                        {% else %}
+                        {{ request.user.username }}
+                        {% endif %}
+                    Perfil</a>
+                    <a class="btn btn-primary" href="http://127.0.0.1:8000/pagweb/logout/">Cerrar Sesion</a>
+                </div>
+                {% else %}
+                <a class="navbar-brand" href="http://127.0.0.1:8000/pagweb/">Inicio</a>
                 <a class="btn btn-primary" href="http://127.0.0.1:8000/pagweb/registro/">Registro</a>
                 <a class="btn btn-primary" href="http://127.0.0.1:8000/pagweb/login/">Login</a>
-                <a class="btn btn-primary" href="http://127.0.0.1:8000/pagweb/logout/">Logout</a>
+                {% endif %}
             </div>
         </nav>
         <!-- Masthead-->
@@ -44,7 +57,7 @@
                 <div class="row">
                     <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
                         <ul class="list-inline mb-2">
-                            <li class="list-inline-item"><a href="#!">About</a></li>
+                            <li class="list-inline-item"><a href="http://127.0.0.1:8000/pagweb/aboutme/">AboutMe</a></li>
                             <li class="list-inline-item">⋅</li>
                             <li class="list-inline-item"><a href="#!">Contact</a></li>
                             <li class="list-inline-item">⋅</li>
@@ -79,5 +92,6 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <script src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
     </body>
 </html>

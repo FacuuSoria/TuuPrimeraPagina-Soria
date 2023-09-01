@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ckeditor',
     'pagweb'
 ]
 
@@ -125,3 +126,9 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = '/pagweb/login'
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor'
+LOGIN_URL = '/pagweb'
+# AUTH_USER_MODEL = "pagweb.User"
