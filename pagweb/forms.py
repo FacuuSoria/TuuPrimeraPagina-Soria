@@ -32,15 +32,21 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = '__all__'
         
+# class UserCreationFormCustom(UserCreationForm):
+#     username=forms.CharField(label="usuario")
+#     password1=forms.CharField(label="Contraseña", widget=forms.PasswordInput)
+#     password2=forms.CharField(label="Repita la Contraseña", widget=forms.PasswordInput)
+#     mail = forms.EmailField(widget=forms.TextInput(attrs={'autofocus': True}))
+#     class Meta:
+#         model = User
+#         fields = ['username', 'password1', 'password2', "mail"]
+#         help_texts = {k:"" for k in fields}
+
 class UserCreationFormCustom(UserCreationForm):
-    username=forms.CharField(label="usuario")
-    password1=forms.CharField(label="Contraseña", widget=forms.PasswordInput)
-    password2=forms.CharField(label="Repita la Contraseña", widget=forms.PasswordInput)
     mail = forms.EmailField(widget=forms.TextInput(attrs={'autofocus': True}))
     class Meta:
-        model = User
-        fields = ['username', 'password1', 'password2']
-        help_texts = {k:"" for k in fields}
+        model = UserModel
+        fields = UserCreationForm.Meta.fields 
 
 class AuthenticationFormCustom(AuthenticationForm):
     username=forms.CharField(label="usuario")

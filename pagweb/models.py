@@ -55,7 +55,7 @@ class Avatar(models.Model):
 
 class User(AbstractBaseUser):
     email = models.EmailField(blank=True, default='', unique=True)
-    name = models.CharField(max_length=200, blank=True, default='')
+    username = models.CharField(max_length=200, blank=True, default='')
     date_joined = models.DateTimeField(default=timezone.now)
     objects = CustomUserManager()
     USERNAME_FIELD = 'email'

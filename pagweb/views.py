@@ -13,7 +13,7 @@ from django.contrib.auth.views import LogoutView, PasswordChangeView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from ckeditor.fields import RichTextField
 
-@login_required
+
 def inicio(request):
     return render(request, 'inicio.html')
 
