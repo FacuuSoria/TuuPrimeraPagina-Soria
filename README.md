@@ -1,3 +1,5 @@
+Para saber mas a fondo como funciona la pagina, les dejo un video explicando que hace. solamente lo tienen que descargar como rar todo el repositorio y el video va a estar ahi
+
 Proyecto Final Coder House - Python<br>
 Comisión: 54185<br>
 Alumno: Facundo Soria<br>
